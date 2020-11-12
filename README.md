@@ -7,6 +7,23 @@ This script was originally developed by Darklandz, later modified by Miss_Behavi
 - Well optimized script
 - Supports mutliple jobs for each door
 
+## Download & Installation
+
+### Using [fvm](https://github.com/qlaffont/fvm-installer)
+```
+fvm install --save --folder=esx esx-public/esx_doorlock
+```
+
+### Using Git
+```
+cd resources
+git clone https://github.com/ESX-PUBLIC/esx_doorlock [esx]/esx_doorlock
+```
+
+### Manually
+- Download https://github.com/ESX-PUBLIC/esx_doorlock/archive/master.zip
+- Put it in the `[esx]` directory
+
 ## Installation
 - Add this to your `server.cfg`:
 
