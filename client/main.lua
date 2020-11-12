@@ -26,6 +26,26 @@ AddEventHandler('esx:setJob', function(job) ESX.PlayerData.job = job end)
 RegisterNetEvent('esx_doorlock:setDoorState')
 AddEventHandler('esx_doorlock:setDoorState', function(index, state) Config.DoorList[index].locked = state end)
 
+DrawText3D = function(coords, text, size,fov,camCoords)
+	local distance = #(coords - camCoords)
+
+	local scale = (size / distance) * 2
+	scale = scale * fov
+
+	SetTextScale(0.0, 0.55 * scale)
+	SetTextFont(0)
+	SetTextColour(255, 255, 255, 255)
+	SetTextDropshadow(0, 0, 0, 0, 255)
+	SetTextDropShadow()
+	SetTextOutline()
+	SetTextCentre(true)
+
+	SetDrawOrigin(coords, 0)
+	BeginTextCommandDisplayText('STRING')
+	AddTextComponentSubstringPlayerName(text)
+	EndTextCommandDisplayText(0.0, 0.0)
+	ClearDrawOrigin()
+end
 
 Citizen.CreateThread(function()
 	while true do
@@ -78,6 +98,8 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		local letSleep = true
+		local camCoords = GetGameplayCamCoords()
+		local fov = (1 / GetGameplayCamFov()) * 100
 
 		for k,v in ipairs(Config.DoorList) do
 			if v.distanceToPlayer and v.distanceToPlayer < 50 then
@@ -91,7 +113,7 @@ Citizen.CreateThread(function()
 				if v.locked then displayText = _U('locked') end
 				if v.isAuthorized then displayText = _U('press_button', displayText) end
 
-				ESX.Game.Utils.DrawText3D(v.textCoords, displayText, size)
+				DrawText3D(v.textCoords, displayText, size, fov, camCoords)
 
 				if IsControlJustReleased(0, 38) then
 					if v.isAuthorized then
