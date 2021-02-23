@@ -1,4 +1,4 @@
-# esx_doorlock
+# esx_doorlock Optimized
 This is a door lock script for ESX, which is used to lock certain doors that shouldn't be accessable by normal citizens.
 
 This script was originally developed by Darklandz, later modified by Miss_Behavin and others.
